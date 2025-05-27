@@ -1,0 +1,148 @@
+ng – Angular CLI Command
+ng serve  // to run the app
+ng generate component my-component, ng g c login  // to generate new component
+ng build // to build the app
+ng help // to check all the ng commands
+
+
+ng Prefix in Directives and Attributes
+In templates, you'll often see built-in Angular directives like:
+
+*ngIf
+*ngFor
+[ngClass]
+[ngStyle]
+
+These are Angular's core directives, and the ng prefix stands for “Angular” — it 
+helps differentiate Angular features from plain HTML attributes.
+ngIf, ngFor = built-in Angular directives
+
+we can put any html name as a selector and it will override the existing html
+selector but this is not recommended
+
+to mannual render of angular app
+import { ChangeDetectorRef } from '@angular/core';
+
+constructor(private cdr: ChangeDetectorRef) {}
+
+someMethod() {
+  this.property = 'updated';
+  this.cdr.detectChanges(); // force update view
+}
+
+==> How Angular Updates the View When You Change a Property
+🔁 1. Change Detection System
+Angular runs a change detection cycle when:
+A user triggers an event (click, input, etc.)
+An @Input() value changes
+An HTTP request completes
+A setTimeout, setInterval, or Promise resolves
+When this happens, Angular:
+Checks every component’s properties
+Compares current values to previous values
+Re-renders the DOM if it detects changes
+
+==> What Zone.js does internally:
+Patches setTimeout
+
+Hooks into the callback
+
+When it completes, it notifies Angular
+
+Angular runs Change Detection → View updates
+User Click / setTimeout / Promise
+        ↓
+Zone.js detects async task started
+        ↓
+Async task completes (callback runs)
+        ↓
+Zone.js notifies Angular
+        ↓
+Angular runs Change Detection
+        ↓
+DOM updates
+
+
+
+Event Type	HTML Element	        Type to Cast
+input	    <input>	                HTMLInputElement
+change	    <select>, <input>	    HTMLSelectElement, HTMLInputElement
+click	    Button, Div, etc.	    MouseEvent
+keyup	    Any input	            KeyboardEvent
+submit	    <form>	                SubmitEvent
+
+
+In Angular, a directive is a special type of class that allows you to add custom
+behavior to elements in the DOM.
+
+What Is a Signal?
+A Signal is a special function that holds a reactive value. When the signal’s
+value changes, Angular automatically updates any code or template that depends on 
+it — without needing manual subscriptions or change detection hacks.
+count = signal<number | string>(0) // declare
+count : WritableSignal<number | string> = signal(0) // declare
+count : Signal<number | string> = computed(()=>100) // declare
+
+
+this.count() // use in ts file
+<div>{{count()}}</div> // to use it html
+this.count.set(this.count()+1) // to set the value
+this.count.update(val=>val+1) // to set the value but limited use for single datatype,
+but does not work with set or update for computed signal it depends on the
+value that provided
+
+
+ngModel // to bind the property with the element(input)
+
+The <router-outlet></router-outlet> is an Angular built-in directive that acts as a placeholder for
+rendering components based on the current route.
+
+
+In Angular, there are two main types of forms
+
+1. Template-Driven Forms
+Uses HTML templates with Angular directives like [(ngModel)]
+
+Best for simple forms
+Requires FormsModule
+🔸 Features:
+Easy to use and understand
+Works well for small or simple forms
+
+2. Reactive Forms
+Uses TypeScript code to build and manage the form
+Best for complex forms, dynamic forms, validations
+Requires ReactiveFormsModule
+
+🔸 Features:
+More control
+Easier for unit testing
+Strong typing and structure
+
+Pipe==>
+In Angular, a pipe is a feature that transforms data in your templates — like 
+formatting dates, numbers, text, or even applying custom logic.
+
+
+In Angular, subscribe() is used to listen to asynchronous data streams, especially from:
+Observables (like HTTP requests, form changes, route params)
+RxJS streams
+
+In Angular, RxJS (Reactive Extensions for JavaScript) is a library for 
+reactive programming using Observables — 
+it lets you work with asynchronous data streams in a clean, powerful way.
+
+An RxJS stream is simply an Observable that emits values over time — like:
+HTTP responses
+User input events
+Form control changes
+WebSocket data
+Route changes
+Timers
+
+Observable ==>
+An Observable is like a TV channel. You subscribe to it to receive broadcasts (data).
+When the channel broadcasts (emits) something, you get it.
+
+
+

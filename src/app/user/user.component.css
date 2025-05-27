@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+}
+.select-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.select-user select {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

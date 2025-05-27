@@ -1,0 +1,11 @@
+<h1>Welcome Home</h1>
+<div class="profile">
+  <!-- <a [routerLink]="['profile', { name: 'Avanish' }]">Go to Profile</a> -->
+  <!-- <button (click)="goToProfile()">Go to Profile</button> -->
+  <ul>
+    <li *ngFor="let user of users">
+      <a routerLink="user/{{ user.id }}/{{ user.name }}">{{ user.name }}</a>
+      <!-- <button (click)="goToProfile(user)">Go to Profile</button> -->
+    </li>
+  </ul>
+</div>

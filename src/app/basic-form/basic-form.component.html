@@ -1,0 +1,59 @@
+<!-- <h2>My Basic Form</h2>
+<form>
+  <div class="basic-form">
+    <input type="text" [formControl]="name" placeholder="Enter name" />
+    <input type="text" [formControl]="password" placeholder="Enter password" />
+    <button (click)="onSubmit()" type="button">Submit</button>
+    {{ name.value }} <br />
+    {{ password.value }} <br />
+  </div>
+</form> -->
+
+<!-- <h2>My Form Group</h2>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="basic-form">
+    <div>
+      <label for="name">Name:</label>
+      <input type="text" placeholder="Enter name" formControlName="name" />
+      <span *ngIf="name?.hasError('required') && name?.touched" class="error">
+        Name is required
+      </span>
+    </div>
+
+    <input
+      type="password"
+      placeholder="Enter password"
+      formControlName="password"
+    />
+    <input type="text" placeholder="Enter Email" formControlName="email" />
+    <button type="submit">Submit</button>
+    <p>{{ myForm.value.name }}</p>
+    <p>{{ myForm.value.password }}</p>
+    <p>{{ myForm.value.email }}</p>
+  </div>
+</form> -->
+
+<h2>My Template Form</h2>
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)">
+  <div class="basic-form">
+    <input
+      #name="ngModel"
+      type="text"
+      placeholder="Enter name"
+      name="name"
+      required
+      ngModel
+    />
+    <span *ngIf="name?.invalid && name?.touched" class="error">
+      Name is required
+    </span>
+    <input
+      type="password"
+      placeholder="Enter password"
+      name="password"
+      ngModel
+    />
+    <input type="text" placeholder="Enter Email" name="email" ngModel />
+    <button [disabled]="myForm.invalid">Submit</button>
+  </div>
+</form>
