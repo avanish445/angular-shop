@@ -6,7 +6,7 @@ import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [ProfileComponent, RouterLink, NgFor],
+  imports: [RouterLink, NgFor],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
